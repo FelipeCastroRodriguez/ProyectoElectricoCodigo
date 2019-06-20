@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Articuno</string>
+    <string name="main_activity_name">Ubicacion</string>
+    <string name="title">Balizas en el area</string>
+    <string name="nivel">Nivel actual</string>
+    <string name="button_text">Ir al mapa</string>
+    <string name="alert_ok">Aceptar</string>
+    <string name="no_beacons">No se han detectado beacons</string>
+</resources>
