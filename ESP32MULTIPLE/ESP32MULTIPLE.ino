@@ -123,7 +123,7 @@ void setup() {
   // Potencia de transmision
   // se utiliza el menor valor posible (-12 dbm)
   // para el mayor ahorro de energia
-  esp_err_t errRc=::esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_N12 );;
+  esp_err_t errRc=::esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_N12 );
 
   // Se crea el primer beacon
   setBeacon1();
@@ -142,7 +142,12 @@ void setup() {
   delay(100);
   pAdvertising->stop();
 
-  // ESP32 entra en modo de deep sleep
+  /* 
+   * ESP32 entra en modo de deep sleep
+   * esta funcion utiliza microsegundos 
+   * por ello se utiliza el factor de 
+   * 1000000LL
+   */
   esp_deep_sleep(1000000LL * GPIO_DEEP_SLEEP_DURATION);
 }
 
