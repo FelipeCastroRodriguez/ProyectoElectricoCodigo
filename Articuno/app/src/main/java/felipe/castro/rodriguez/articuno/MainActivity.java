@@ -18,6 +18,7 @@ package felipe.castro.rodriguez.articuno;
  * se van a usar en el archivo
  * build.gradle (Module app)
  */
+
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -56,6 +57,7 @@ import java.util.Set;
  * con los beacons encontrados, en particular para usar el metodo "onBeaconServiceConnect()"
  */
 public class MainActivity extends AppCompatActivity implements BeaconConsumer {
+
     /*********************
      * Atributos Globales
      *********************/
@@ -63,10 +65,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
      * El atributo scanNumber representa
      * la cantidad de escaneos que se han
      * realizado en busqueda de beacons
-     */
-    public int scanNumber = 0;
-
-    /*
+     *
      * beaconsEncontrados es un diccionario
      * que contiene todos los beacons encontrados
      * el "key" es un string que representa el
@@ -75,7 +74,13 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
      *
      * Se crea un metodo para obtener un string con
      * los contenidos del diccionario
+     *
+     * beaconManager: Objeto de la clase BeaconManager.
+     * En conjunto con la interface BeaconConsumer permite
+     * realizar el ranging en busqueda de beacons
      */
+    public int scanNumber = 0;
+
     public HashMap<String,FoundBeacon> beaconsEncontrados;
     public String printBeaconsEncontrados(HashMap<String,FoundBeacon> lista){
         String resultado = "";
@@ -89,15 +94,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         return resultado;
     }
 
-    /*
-     * beaconManager: Objeto de la clase BeaconManager.
-     * En conjunto con la interface BeaconConsumer permite
-     * realizar el ranging en busqueda de beacons
-     */
     public BeaconManager beaconManager;
-    public BeaconManager getBeaconManager(){
-        return this.beaconManager;
-    }
 
     /***********
      * onCreate
@@ -146,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         this.beaconManager.getBeaconParsers().add(new BeaconParser().setBeaconLayout(BeaconParser.EDDYSTONE_UID_LAYOUT));
         this.beaconManager.setForegroundScanPeriod(4400);
         this.beaconManager.bind(this);
-        this.beaconsEncontrados = new HashMap<String,FoundBeacon>();
+        this.beaconsEncontrados = new HashMap<>();
 
         /*
          * En Android 6 (Marshmallow) y versiones superiores
@@ -218,6 +215,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
      * Despues de haber hecho el bind, se puede utilizar
      * el BeaconService por medio del BeaconManager
      */
+
     @Override
     public void onBeaconServiceConnect() {
         /*
@@ -225,10 +223,10 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
          * a los cuadros de texto en el layout y al
          * boton
          */
-        final TextView viewListaBeacons = (TextView) MainActivity.this.findViewById(R.id.viewListaBeacons);
+        final TextView viewListaBeacons = MainActivity.this.findViewById(R.id.viewListaBeacons);
         viewListaBeacons.setMovementMethod(new ScrollingMovementMethod());
-        final TextView viewNivelActualNumero = (TextView) MainActivity.this.findViewById(R.id.viewNivelActualNumero);
-        final Button btnMap = (Button) findViewById(R.id.btnMap);
+        final TextView viewNivelActualNumero = MainActivity.this.findViewById(R.id.viewNivelActualNumero);
+        final Button btnMap = findViewById(R.id.btnMap);
 
         /*
          * El Identifier es un objeto que representa
