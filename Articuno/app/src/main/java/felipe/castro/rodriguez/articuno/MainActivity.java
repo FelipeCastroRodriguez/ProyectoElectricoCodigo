@@ -26,8 +26,8 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
@@ -338,12 +338,12 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
             if (!BeaconManager.getInstanceForApplication(this).checkAvailability()) {
                 final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
                 builder.setTitle("Bluetooth deshabilitado");
-                builder.setMessage("Por favcor habilitar Bluetooth y reiniciar la app");
+                builder.setMessage("Por favor habilitar Bluetooth y reiniciar la app");
                 builder.setPositiveButton(android.R.string.ok, null);
                 builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
-                        System.exit(0);
+                        //System.exit(0);
                     }
                 });
                 builder.show();
@@ -405,8 +405,16 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
                 return "1";
             case "0x222222222222":
                 return "2";
+            case "0x333333333333":
+                return "3";
+            case "0x444444444444":
+                return "4";
+            case "0x555555555555":
+                return "5";
+            case "0x666666666666":
+                return "6";
             default:
-                return "Error: beacon no registrado";
+                return "Error: baliza no registrada";
         }
     }
 

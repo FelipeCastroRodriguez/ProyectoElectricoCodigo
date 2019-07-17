@@ -1,9 +1,11 @@
 package felipe.castro.rodriguez.articuno;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.jsibbold.zoomage.ZoomageView;
 
 /***********************
  * ImageDisplayActivity
@@ -14,36 +16,61 @@ import android.widget.TextView;
  * que se encuentra el usuario
  */
 public class ImageDisplayActivity extends AppCompatActivity {
+
     /***********
      * onCreate
      ***********/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("");
+        setTitle("Mapa del nivel");
         setContentView(R.layout.activity_image_display);
+
         // Se obtiene una referencia al ImageView
-        ImageView img = (ImageView) findViewById(R.id.imageView);
+        ZoomageView mapaNivel = (ZoomageView) findViewById(R.id.ZoomageViewMap);
         TextView viewNoBeacon = (TextView) this.findViewById(R.id.viewNoBeacon);
 
         // Se muestra el mapa correspondiente
         switch(getIntent().getExtras().getString("Key")){
+
             case "1":
                 // Usuario en el nivel 1
                 viewNoBeacon.setText("");
-                img.setImageResource(R.drawable.cat);;
+                mapaNivel.setImageResource(R.drawable.nivelunocolor);;
                 break;
             case "2":
                 // Usuario en el nivel 2
                 viewNoBeacon.setText("");
-                img.setImageResource(R.drawable.toucan1);;
+                mapaNivel.setImageResource(R.drawable.niveldoscolor);
                 break;
-            case "Error: beacon no registrado":
+
+            case "3":
+                // Usuario en el nivel 3
+                viewNoBeacon.setText("");
+                mapaNivel.setImageResource(R.drawable.niveltrescolor);
+                break;
+            case "4":
+                // Usuario en el nivel 4
+                viewNoBeacon.setText("");
+                mapaNivel.setImageResource(R.drawable.toucan1);
+                break;
+            case "5":
+                // Usuario en el nivel 5
+                viewNoBeacon.setText("");
+                mapaNivel.setImageResource(R.drawable.toucan1);
+                break;
+            case "6":
+                // Usuario en el nivel 6
+                viewNoBeacon.setText("");
+                mapaNivel.setImageResource(R.drawable.toucan1);
+                break;
+            case "Error: baliza no registrada":
                 // Beacon no registrado
                 viewNoBeacon.setText("");
-                img.setImageResource(R.drawable.error);;
+                mapaNivel.setImageResource(R.drawable.cat);
                 break;
         }
+
     }
 
     /************
